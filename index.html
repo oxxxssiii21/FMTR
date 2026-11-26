@@ -3,88 +3,129 @@
 <style>
 :root{--bg:#0c0c10;--panel:#15151b;--panel2:#1b1b23;--line:#292832;--text:#eeeef3;--muted:#92919e;--purple:#8b48d9;--p2:#b38aff}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button{font:inherit;color:inherit;cursor:pointer}a{color:inherit;text-decoration:none}.app{min-height:100vh;display:flex}.sidebar{width:248px;background:#111116;border-right:1px solid var(--line);padding:18px 14px;position:fixed;inset:0 auto 0 0;overflow:auto;z-index:5}.brand{display:flex;align-items:center;gap:12px;padding:5px 8px 18px;border-bottom:1px solid var(--line);margin-bottom:15px}.brand img{width:58px;height:58px;object-fit:contain;border-radius:12px}.brand strong{font-size:18px;letter-spacing:1px}.brand small{display:block;color:var(--muted);font-size:11px}.navlabel{font-size:10px;color:#797784;font-weight:800;letter-spacing:1.4px;padding:13px 9px 6px}.nav button{width:100%;border:0;background:none;display:flex;align-items:center;gap:12px;text-align:left;padding:10px 11px;border-radius:8px;color:#c3c2cd;font-size:13px;margin:2px 0}.nav button:hover{background:#202027}.nav button.active{background:#282032;color:#e6d3ff;box-shadow:inset 2px 0 var(--purple)}.ico{width:19px;text-align:center;color:#a6a4b1;font-size:15px}.main{margin-left:248px;min-width:0;flex:1}.topbar{height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-bottom:1px solid var(--line);background:#101014;position:sticky;top:0;z-index:3}.topleft{display:flex;align-items:center;gap:12px}.crumb{color:var(--muted);font-size:13px}.topactions{display:flex;gap:10px;align-items:center}.btn{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:9px 12px}.btn:hover{border-color:#51445e}.hamb{display:none}.content{padding:28px;max-width:1500px;margin:auto}.welcome{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:24px}.welcome h1{font-size:26px;letter-spacing:-.5px;margin:0 0 5px}.welcome p{color:var(--muted);margin:0}.eyebrow{color:var(--p2);font-size:11px;font-weight:800;letter-spacing:1.5px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0}.span8{grid-column:span 8}.span4{grid-column:span 4}.span6{grid-column:span 6}.span12{grid-column:span 12}.cardhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.cardhead h3{margin:0;font-size:15px}.sub{color:var(--muted);font-size:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{padding:15px;background:#1b1a22;border-radius:9px}.stat b{font-size:24px;display:block}.stat span{color:var(--muted);font-size:12px}.feed{display:flex;gap:12px;padding:12px 0;border-top:1px solid #24232b}.feed:first-child{border:0}.avatar{width:34px;height:34px;border-radius:10px;background:#322342;display:grid;place-items:center;color:#d7b5ff;font-weight:700;flex-shrink:0}.feed p{margin:0;font-size:13px}.feed small{color:var(--muted)}.event{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #24232b}.event:last-child{border:0}.datebox{background:#25202e;border:1px solid #392c49;border-radius:8px;padding:8px;text-align:center;min-width:45px;color:#d7b5ff}.datebox b{display:block;font-size:17px}.datebox small{font-size:10px}.empty{padding:25px;text-align:center;color:var(--muted)}.sectionpage{display:none}.sectionpage.show{display:block}.sectionpage h1{font-size:25px;margin:0 0 8px}.sectionpage .intro{color:var(--muted);margin-bottom:20px}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.quick button{background:#1a1921;border:1px solid var(--line);border-radius:10px;padding:16px;text-align:left}.quick button:hover{border-color:#71528e}.quick b{display:block;margin:7px 0}.quick span{font-size:12px;color:var(--muted)}.mobile-nav{display:none}.toast{position:fixed;bottom:20px;right:20px;background:#292232;border:1px solid #59416f;padding:12px 16px;border-radius:10px;display:none;z-index:10}.toast.show{display:block}
 @media(max-width:950px){.sidebar{width:220px}.main{margin-left:220px}.span8,.span4{grid-column:span 12}.content{padding:22px}}
-.auth-backdrop{position:fixed;inset:0;background:#000b;display:grid;place-items:center;padding:18px;z-index:20}.auth-backdrop[hidden]{display:none}.auth-panel{position:relative;width:min(100%,420px);background:#17161e;border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:0 20px 70px #0009}.auth-panel h2{margin:8px 0 4px;font-size:23px}.auth-panel form{display:grid;gap:13px;margin-top:20px}.auth-panel label{display:grid;gap:6px;font-size:13px;color:#c9c7d2}.auth-panel input{width:100%;background:#101016;border:1px solid #34313e;border-radius:8px;padding:12px;color:var(--text);font:inherit}.auth-panel input:focus{outline:1px solid var(--purple);border-color:var(--purple)}.auth-close{position:absolute;right:14px;top:10px;background:none;border:0;color:var(--muted);font-size:26px}.auth-submit{background:#7136b4;border-color:#8950ca;margin-top:4px}.auth-switch{background:none;border:0;color:#c9a5ff;margin-top:16px;padding:8px 0}.auth-error{color:#ff9d9d;font-size:12px;min-height:16px;margin:0}
 @media(max-width:700px){.sidebar{transform:translateX(-100%);transition:transform .2s;width:270px;box-shadow:15px 0 40px #0008}.sidebar.open{transform:translateX(0)}.main{margin:0}.topbar{height:60px;padding:0 14px}.hamb{display:block}.crumb{display:none}.content{padding:17px}.welcome{align-items:flex-start}.welcome h1{font-size:22px}.welcome .btn{display:none}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:12px}.stat b{font-size:20px}.quick{grid-template-columns:repeat(2,1fr)}.topactions .btn{padding:8px}.mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#111116;border-top:1px solid var(--line);justify-content:space-around;padding:9px 4px env(safe-area-inset-bottom);z-index:4}.mobile-nav button{background:none;border:0;color:#a9a8b4;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:3px}.mobile-nav .ico{font-size:17px}.content{padding-bottom:90px}}
-</style><script src="https://cdn.jsdelivr.net/npm/appwrite@29.0.0"></script>
-</head><body>
-<div class="app"><aside class="sidebar" id="sidebar"><div class="brand"><img src="logo.png" alt="FMTR logosu"><div><strong>FMTR</strong><small>Özel topluluk • 2024</small></div></div><nav class="nav" id="nav"></nav></aside><main class="main"><header class="topbar"><div class="topleft"><button class="btn hamb" onclick="toggleMenu()">☰</button><span class="crumb">FMTR / <span id="crumb">Ana Sayfa</span></span></div><div class="topactions"><button class="btn" onclick="toast('Bildirimler sonraki aşamada bağlanacak.')" aria-label="Bildirimler">♧ <span class="sub">0</span></button><button class="btn" id="authButton" onclick="openAuth()">Giriş yap</button></div></header><div class="content"><section id="home" class="sectionpage show"><div class="welcome"><div><div class="eyebrow">FMTR TOPLULUĞU</div><h1>Hoş geldin, üye.</h1><p>Topluluğun nabzı burada.</p></div><button class="btn" onclick="toast('Kişiselleştirme sonraki aşamada.')">⌁ Özelleştir</button></div><div class="grid"><article class="card span8"><div class="cardhead"><h3>Topluluk özeti</h3><span class="sub">Genel bakış</span></div><div class="stats"><div class="stat"><b>—</b><span>Lig maçları</span></div><div class="stat"><b>—</b><span>Aktif üyeler</span></div><div class="stat"><b>—</b><span>Etkinlikler</span></div></div><div style="margin-top:18px" class="sub">Veriler bağlantı aşamasında burada otomatik güncellenecek.</div></article><article class="card span4"><div class="cardhead"><h3>Duyurular</h3><span class="sub">Topluluk</span></div><div class="empty">Henüz duyuru yok.</div></article><article class="card span6"><div class="cardhead"><h3>Yaklaşan etkinlikler</h3><span class="sub">Takvim</span></div><div class="empty">Planlanan etkinlikler burada görünecek.</div></article><article class="card span6"><div class="cardhead"><h3>Son gazete haberleri</h3><span class="sub">FMTR Gazetesi</span></div><div class="empty">Henüz haber yayımlanmadı.</div></article><article class="card span8"><div class="cardhead"><h3>Topluluk hareketleri</h3><span class="sub">Son aktiviteler</span></div><div class="empty">Aktiviteler bağlandığında burada listelenecek.</div></article><article class="card span4"><div class="cardhead"><h3>Çevrimiçi üyeler</h3><span class="sub">Şu an</span></div><div class="empty">Durum sistemi henüz bağlı değil.</div></article><article class="card span12"><div class="cardhead"><h3>Hızlı erişim</h3><span class="sub">FMTR</span></div><div class="quick" id="quick"></div></article></div></section><section id="other" class="sectionpage"><h1 id="otherTitle">Bölüm</h1><p class="intro" id="otherIntro">FMTR bölümü.</p><div class="card"><div class="cardhead"><h3 id="otherCardTitle">Bu alanın başlangıç arayüzü</h3><span class="sub">Prototip</span></div><p id="otherText" class="sub">Bu bölümün işlevleri sonraki geliştirme aşamalarında bağlanacak.</p><div class="quick" id="sectionActions"></div></div></section></div></main></div><div class="mobile-nav"><button onclick="show('home')"><span class="ico">⌂</span>Home</button><button onclick="show('chat')"><span class="ico">▤</span>Sohbet</button><button onclick="toggleMenu()"><span class="ico">☰</span>Menü</button><button onclick="show('profile')"><span class="ico">◉</span>Profil</button></div><div class="toast" id="toast"></div>
-<div class="auth-backdrop" id="authBackdrop" hidden>
-  <section class="auth-panel" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-    <button class="auth-close" type="button" onclick="closeAuth()" aria-label="Kapat">×</button>
-    <div class="eyebrow">FMTR TOPLULUĞU</div>
-    <h2 id="authTitle">Hesabına giriş yap</h2>
-    <p class="sub" id="authHint">FMTR hesabınla devam et.</p>
+
+/* Appwrite authentication gate */
+body:not(.authenticated) .app{display:none}
+#authScreen{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 50% 0%,#241832 0%,#0c0c10 55%)}
+body.authenticated #authScreen{display:none}
+.auth-card{width:min(100%,420px);background:#15151b;border:1px solid #34303d;border-radius:16px;padding:28px;box-shadow:0 20px 70px #0008}
+.auth-brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.auth-brand img{width:54px;height:54px;object-fit:contain;border-radius:10px}
+.auth-brand strong{font-size:20px;letter-spacing:1px}
+.auth-brand small{display:block;color:#92919e;font-size:12px}
+.auth-card h1{font-size:23px;margin:0 0 5px}
+.auth-desc{color:#92919e;font-size:13px;margin:0 0 22px}
+.auth-tabs{display:flex;gap:8px;margin-bottom:18px}
+.auth-tabs button{flex:1;background:#1b1b23;border:1px solid #34303d;border-radius:8px;padding:10px}
+.auth-tabs button.active{background:#322342;border-color:#8b48d9;color:#eadcff}
+.auth-field{display:block;margin:12px 0;color:#c9c6d1;font-size:12px}
+.auth-field input{display:block;width:100%;margin-top:6px;background:#0e0e13;color:#eeeef3;border:1px solid #34303d;border-radius:8px;padding:12px;font:inherit;outline:none}
+.auth-field input:focus{border-color:#8b48d9}
+.auth-submit{width:100%;border:0;border-radius:8px;background:#8b48d9;color:white;padding:12px;font-weight:700;margin-top:8px}
+.auth-submit:disabled{opacity:.6;cursor:wait}
+.auth-message{min-height:20px;color:#d7b5ff;font-size:12px;margin-top:12px}
+.auth-note{color:#777581;font-size:11px;margin-top:14px;text-align:center}
+@media(max-width:480px){.auth-card{padding:22px}}
+</style></head><body>
+<section id="authScreen" aria-label="FMTR giriş">
+  <div class="auth-card">
+    <div class="auth-brand"><img src="logo.png" alt="FMTR"><div><strong>FMTR</strong><small>Özel topluluk</small></div></div>
+    <h1 id="authTitle">FMTR'ye giriş yap</h1>
+    <p class="auth-desc" id="authDesc">Devam etmek için hesabına giriş yap.</p>
+    <div class="auth-tabs">
+      <button type="button" id="loginTab" class="active" onclick="setAuthMode('login')">Giriş yap</button>
+      <button type="button" id="registerTab" onclick="setAuthMode('register')">Kayıt ol</button>
+    </div>
     <form id="authForm">
-      <label id="nameLabel" hidden>Görünen ad<input id="authName" autocomplete="name" maxlength="100" placeholder="Adın"></label>
-      <label>E-posta<input id="authEmail" type="email" autocomplete="email" required placeholder="ornek@mail.com"></label>
-      <label>Şifre<input id="authPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="En az 8 karakter"></label>
-      <p class="auth-error" id="authError" role="alert"></p>
-      <button class="btn auth-submit" id="authSubmit" type="submit">Giriş yap</button>
+      <label class="auth-field" id="nameWrap" hidden>Adın
+        <input id="authName" type="text" maxlength="60" autocomplete="name" placeholder="Adın">
+      </label>
+      <label class="auth-field">E-posta
+        <input id="authEmail" type="email" autocomplete="email" required placeholder="ornek@mail.com">
+      </label>
+      <label class="auth-field">Şifre
+        <input id="authPassword" type="password" minlength="8" autocomplete="current-password" required placeholder="En az 8 karakter">
+      </label>
+      <button class="auth-submit" id="authSubmit" type="submit">Giriş yap</button>
+      <div class="auth-message" id="authMessage" role="status"></div>
     </form>
-    <button class="auth-switch" id="authSwitch" type="button" onclick="toggleAuthMode()">Hesabın yok mu? Kayıt ol</button>
-  </section>
-</div>
+    <div class="auth-note">Hesap bilgilerin Appwrite tarafından güvenli şekilde doğrulanır.</div>
+  </div>
+</section>
+
+<div class="app"><aside class="sidebar" id="sidebar"><div class="brand"><img src="logo.png" alt="FMTR logosu"><div><strong>FMTR</strong><small>Özel topluluk • 2024</small></div></div><nav class="nav" id="nav"></nav></aside><main class="main"><header class="topbar"><div class="topleft"><button class="btn hamb" onclick="toggleMenu()">☰</button><span class="crumb">FMTR / <span id="crumb">Ana Sayfa</span></span></div><div class="topactions"><button class="btn" onclick="toast('Bildirimler sonraki aşamada bağlanacak.')" aria-label="Bildirimler">♧ <span class="sub">0</span></button><button class="btn" id="accountButton" onclick="logoutFMTR()">Çıkış yap</button></div></header><div class="content"><section id="home" class="sectionpage show"><div class="welcome"><div><div class="eyebrow">FMTR TOPLULUĞU</div><h1>Hoş geldin, üye.</h1><p>Topluluğun nabzı burada.</p></div><button class="btn" onclick="toast('Kişiselleştirme sonraki aşamada.')">⌁ Özelleştir</button></div><div class="grid"><article class="card span8"><div class="cardhead"><h3>Topluluk özeti</h3><span class="sub">Genel bakış</span></div><div class="stats"><div class="stat"><b>—</b><span>Lig maçları</span></div><div class="stat"><b>—</b><span>Aktif üyeler</span></div><div class="stat"><b>—</b><span>Etkinlikler</span></div></div><div style="margin-top:18px" class="sub">Veriler bağlantı aşamasında burada otomatik güncellenecek.</div></article><article class="card span4"><div class="cardhead"><h3>Duyurular</h3><span class="sub">Topluluk</span></div><div class="empty">Henüz duyuru yok.</div></article><article class="card span6"><div class="cardhead"><h3>Yaklaşan etkinlikler</h3><span class="sub">Takvim</span></div><div class="empty">Planlanan etkinlikler burada görünecek.</div></article><article class="card span6"><div class="cardhead"><h3>Son gazete haberleri</h3><span class="sub">FMTR Gazetesi</span></div><div class="empty">Henüz haber yayımlanmadı.</div></article><article class="card span8"><div class="cardhead"><h3>Topluluk hareketleri</h3><span class="sub">Son aktiviteler</span></div><div class="empty">Aktiviteler bağlandığında burada listelenecek.</div></article><article class="card span4"><div class="cardhead"><h3>Çevrimiçi üyeler</h3><span class="sub">Şu an</span></div><div class="empty">Durum sistemi henüz bağlı değil.</div></article><article class="card span12"><div class="cardhead"><h3>Hızlı erişim</h3><span class="sub">FMTR</span></div><div class="quick" id="quick"></div></article></div></section><section id="other" class="sectionpage"><h1 id="otherTitle">Bölüm</h1><p class="intro" id="otherIntro">FMTR bölümü.</p><div class="card"><div class="cardhead"><h3 id="otherCardTitle">Bu alanın başlangıç arayüzü</h3><span class="sub">Prototip</span></div><p id="otherText" class="sub">Bu bölümün işlevleri sonraki geliştirme aşamalarında bağlanacak.</p><div class="quick" id="sectionActions"></div></div></section></div></main></div><div class="mobile-nav"><button onclick="show('home')"><span class="ico">⌂</span>Home</button><button onclick="show('chat')"><span class="ico">▤</span>Sohbet</button><button onclick="toggleMenu()"><span class="ico">☰</span>Menü</button><button onclick="show('profile')"><span class="ico">◉</span>Profil</button></div><div class="toast" id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/appwrite@29.0.0"></script>
 <script>
+const APPWRITE_ENDPOINT='https://fra.cloud.appwrite.io/v1';
+const APPWRITE_PROJECT_ID='6b07e2690038786bb7e3';
+const awClient=new Appwrite.Client().setEndpoint(APPWRITE_ENDPOINT).setProject(APPWRITE_PROJECT_ID);
+const awAccount=new Appwrite.Account(awClient);
+let authMode='login';
+let currentFMTRUser=null;
+
+function setAuthMode(mode){
+  authMode=mode;
+  const registering=mode==='register';
+  document.getElementById('authTitle').textContent=registering?'FMTR hesabı oluştur':'FMTR\'ye giriş yap';
+  document.getElementById('authDesc').textContent=registering?'Topluluğa katılmak için hesap oluştur.':'Devam etmek için hesabına giriş yap.';
+  document.getElementById('authSubmit').textContent=registering?'Kayıt ol':'Giriş yap';
+  document.getElementById('nameWrap').hidden=!registering;
+  document.getElementById('authPassword').autocomplete=registering?'new-password':'current-password';
+  document.getElementById('loginTab').classList.toggle('active',!registering);
+  document.getElementById('registerTab').classList.toggle('active',registering);
+  document.getElementById('authMessage').textContent='';
+}
+function showFMTRApp(user){
+  currentFMTRUser=user;
+  document.body.classList.add('authenticated');
+  const displayName=user.name||user.email.split('@')[0];
+  const welcome=document.querySelector('.welcome h1');
+  if(welcome) welcome.textContent='Hoş geldin, '+displayName+'.';
+  const accountButton=document.getElementById('accountButton');
+  if(accountButton) accountButton.textContent=displayName+' · Çıkış';
+}
+async function logoutFMTR(){
+  try{await awAccount.deleteSession({sessionId:'current'});}catch(e){}
+  currentFMTRUser=null;
+  document.body.classList.remove('authenticated');
+  setAuthMode('login');
+  document.getElementById('authPassword').value='';
+}
+document.getElementById('authForm').addEventListener('submit',async(event)=>{
+  event.preventDefault();
+  const button=document.getElementById('authSubmit');
+  const message=document.getElementById('authMessage');
+  const email=document.getElementById('authEmail').value.trim();
+  const password=document.getElementById('authPassword').value;
+  const name=document.getElementById('authName').value.trim();
+  button.disabled=true;
+  message.textContent='Bağlanıyor...';
+  try{
+    if(authMode==='register'){
+      if(!name) throw new Error('Lütfen adını yaz.');
+      await awAccount.create({userId:Appwrite.ID.unique(),email,password,name});
+    }
+    await awAccount.createEmailPasswordSession({email,password});
+    const user=await awAccount.get();
+    message.textContent='Giriş başarılı.';
+    showFMTRApp(user);
+  }catch(error){
+    message.textContent=error.message||'İşlem başarısız. Bilgilerini kontrol et.';
+  }finally{button.disabled=false;}
+});
+(async()=>{
+  try{
+    const user=await awAccount.get();
+    showFMTRApp(user);
+  }catch(error){
+    document.body.classList.remove('authenticated');
+  }
+})();
 const sections=[['home','Ana Sayfa','⌂','GENEL'],['announcements','Duyurular','▣','GENEL'],['members','Üye Yönetimi','♙','YÖNETİM'],['events','Etkinlikler ve Oylamalar','▦','GENEL'],['fm','Football Manager','⚽','FM MERKEZİ'],['minecraft','Minecraft','▧','FM MERKEZİ'],['best','FMTR The Best','✦','ARŞİV'],['wheel','Çark','◉','ARŞİV'],['museum','FMTR Müze','▤','ARŞİV'],['quotes','Efsane Sözler','❝','ARŞİV'],['paper','FMTR Gazetesi','▤','MEDYA'],['history','İşlem Geçmişi','↺','YÖNETİM'],['profile','Profilim','◉','HESABIM'],['arcade','FMTR Arcade','▣','ARAÇLAR'],['tools','FMTR Tools','⌘','ARAÇLAR'],['season','Sezon Merkezi','♜','FM MERKEZİ'],['settings','Ayarlar','⚙','HESABIM'],['chat','Genel Sohbet','▤','GENEL']];
 const descriptions={'announcements':'Topluluğun sabit ve güncel duyuruları.','members':'Üyeler, roller ve davet yönetimi.','events':'Etkinlik planları, katılım ve oylamalar.','fm':'Ligler, transferler, haberler ve basın toplantıları.','minecraft':'Minecraft sohbeti ve paylaşımlar.','best':'Yıllık FMTR ödülleri ve kazananlar.','wheel':'İsimleri ekleyip şans çarkını kullan.','museum':'Topluluk görselleri ve ödül arşivi.','quotes':'Topluluğun unutulmaz sözleri.','paper':'FMTR haber arşivi.','history':'Yönetim işlemlerinin kayıtları.','profile':'Profil bilgilerin.','arcade':'Arkadaşlarla mini oyunlar.','tools':'Günlük araçlar.','season':'Sezonlar ve şampiyonluk arşivi.','settings':'Hesap, görünüm ve gizlilik tercihleri.','chat':'Topluluğun genel sohbet alanı.'};
 const nav=document.getElementById('nav');let group='';sections.forEach(([id,name,ico,g])=>{if(g!==group){group=g;nav.insertAdjacentHTML('beforeend',`<div class="navlabel">${g}</div>`)}nav.insertAdjacentHTML('beforeend',`<button data-id="${id}" onclick="show('${id}')"><span class="ico">${ico}</span>${name}</button>`)});
 const quickIds=['fm','chat','events','paper','museum','arcade'];quickIds.forEach(id=>{let s=sections.find(x=>x[0]===id);document.getElementById('quick').insertAdjacentHTML('beforeend',`<button onclick="show('${id}')"><span class="ico">${s[2]}</span><b>${s[1]}</b><span>${descriptions[id]}</span></button>`)});
 function show(id){if(id==='home'){document.getElementById('home').classList.add('show');document.getElementById('other').classList.remove('show');document.getElementById('crumb').textContent='Ana Sayfa'}else{document.getElementById('home').classList.remove('show');document.getElementById('other').classList.add('show');let s=sections.find(x=>x[0]===id);document.getElementById('otherTitle').textContent=s?s[1]:id;document.getElementById('crumb').textContent=s?s[1]:id;document.getElementById('otherIntro').textContent=descriptions[id]||'FMTR bölümü';document.getElementById('otherCardTitle').textContent=s?s[1]+' • Başlangıç':'Bölüm';document.getElementById('otherText').textContent='Bu bölümün tasarımı hazır. Gerçek veri ve özellik bağlantıları sonraki aşamalarda yapılacak; şu an hiçbir işlem sahte biçimde kaydedilmiyor.';let actions=document.getElementById('sectionActions');actions.innerHTML='';['İçerik alanı','Arşiv','İşlemler'].forEach((x,i)=>actions.insertAdjacentHTML('beforeend',`<button onclick="toast('Bu özellik sonraki aşamada bağlanacak.')"><b>${x}</b><span>Henüz aktif değil</span></button>`))}document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.id===id));document.getElementById('sidebar').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'})}
 function toggleMenu(){document.getElementById('sidebar').classList.toggle('open')}function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
-
-// Appwrite bağlantısı: Bu bilgiler tarayıcıda kullanılmak üzere tasarlanmış genel proje bilgileridir.
-const appwriteClient = new Appwrite.Client()
-  .setEndpoint('https://fra.cloud.appwrite.io/v1')
-  .setProject('6b07e2690038786bb7e3');
-const appwriteAccount = new Appwrite.Account(appwriteClient);
-let authMode = 'login';
-let signedInUser = null;
-function openAuth(){
-  if(signedInUser){signOut();return;}
-  document.getElementById('authBackdrop').hidden=false;
-  document.getElementById('authEmail').focus();
-}
-function closeAuth(){document.getElementById('authBackdrop').hidden=true;}
-function toggleAuthMode(){
-  authMode = authMode === 'login' ? 'register' : 'login';
-  const registering = authMode === 'register';
-  document.getElementById('authTitle').textContent = registering ? 'FMTR hesabı oluştur' : 'Hesabına giriş yap';
-  document.getElementById('authHint').textContent = registering ? 'Topluluğa katılmak için bilgilerini gir.' : 'FMTR hesabınla devam et.';
-  document.getElementById('nameLabel').hidden = !registering;
-  document.getElementById('authName').required = registering;
-  document.getElementById('authPassword').autocomplete = registering ? 'new-password' : 'current-password';
-  document.getElementById('authSubmit').textContent = registering ? 'Kayıt ol' : 'Giriş yap';
-  document.getElementById('authSwitch').textContent = registering ? 'Zaten hesabın var mı? Giriş yap' : 'Hesabın yok mu? Kayıt ol';
-  document.getElementById('authError').textContent='';
-}
-document.getElementById('authForm').addEventListener('submit', async (event)=>{
-  event.preventDefault();
-  const email=document.getElementById('authEmail').value.trim();
-  const password=document.getElementById('authPassword').value;
-  const name=document.getElementById('authName').value.trim();
-  const errorBox=document.getElementById('authError');
-  const submit=document.getElementById('authSubmit');
-  submit.disabled=true; submit.textContent='İşleniyor…'; errorBox.textContent='';
-  try{
-    if(authMode==='register'){
-      await appwriteAccount.create({userId:Appwrite.ID.unique(),email,password,name});
-    }
-    await appwriteAccount.createEmailPasswordSession({email,password});
-    signedInUser=await appwriteAccount.get();
-    updateAuthButton(); closeAuth(); toast('Giriş başarılı. Hoş geldin, '+(signedInUser.name||'üye')+'.');
-  }catch(error){
-    errorBox.textContent=error.message || 'İşlem tamamlanamadı. Bilgilerini kontrol et.';
-  }finally{
-    submit.disabled=false; submit.textContent=authMode==='register'?'Kayıt ol':'Giriş yap';
-  }
-});
-function updateAuthButton(){
-  const button=document.getElementById('authButton');
-  button.textContent=signedInUser ? (signedInUser.name||'Hesabım')+' · Çıkış' : 'Giriş yap';
-}
-async function signOut(){
-  try{await appwriteAccount.deleteSession({sessionId:'current'});signedInUser=null;updateAuthButton();toast('Çıkış yapıldı.');}
-  catch(error){toast(error.message||'Çıkış yapılamadı.');}
-}
-(async()=>{try{signedInUser=await appwriteAccount.get();updateAuthButton();}catch(_){signedInUser=null;updateAuthButton();}})();
 </script></body></html>
