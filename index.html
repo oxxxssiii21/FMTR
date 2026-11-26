@@ -37,6 +37,8 @@ body.authenticated #authScreen{display:none}
 .notice-status{color:#b38aff;font-size:12px}
 .notice-error{color:#ffb4b4}
 .section-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+
+.module-form{display:grid;gap:10px;margin:14px 0 18px}.module-form input,.module-form textarea,.module-form select{width:100%;background:#0e0e13;color:#eeeef3;border:1px solid #34303d;border-radius:8px;padding:11px;font:inherit}.module-form textarea{min-height:90px;resize:vertical}.module-form button,.action-btn{background:#8b48d9;border:0;border-radius:8px;padding:10px 14px;color:white;font-weight:700}.data-list{display:grid;gap:10px}.data-row{background:#1b1a22;border:1px solid #302d39;border-radius:10px;padding:14px}.data-row h3{margin:0 0 6px;font-size:15px}.data-row p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;color:#d1cfda}.data-row small{display:block;color:#92919e;margin-top:8px}.field-label{font-size:12px;color:#b9b6c4}.inline-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.notice-status{margin:8px 0;color:#b38aff;font-size:12px}
 </style></head><body>
 <section id="authScreen" aria-label="FMTR giriş">
   <div class="auth-card">
@@ -64,7 +66,7 @@ body.authenticated #authScreen{display:none}
   </div>
 </section>
 
-<div class="app"><aside class="sidebar" id="sidebar"><div class="brand"><img src="logo.png" alt="FMTR logosu"><div><strong>FMTR</strong><small>Özel topluluk • 2024</small></div></div><nav class="nav" id="nav"></nav></aside><main class="main"><header class="topbar"><div class="topleft"><button class="btn hamb" onclick="toggleMenu()">☰</button><span class="crumb">FMTR / <span id="crumb">Ana Sayfa</span></span></div><div class="topactions"><button class="btn" onclick="toast('Bildirimler sonraki aşamada bağlanacak.')" aria-label="Bildirimler">♧ <span class="sub">0</span></button><button class="btn" id="accountButton" onclick="logoutFMTR()">Çıkış yap</button></div></header><div class="content"><section id="home" class="sectionpage show"><div class="welcome"><div><div class="eyebrow">FMTR TOPLULUĞU</div><h1>Hoş geldin, üye.</h1><p>Topluluğun nabzı burada.</p></div><button class="btn" onclick="toast('Kişiselleştirme sonraki aşamada.')">⌁ Özelleştir</button></div><div class="grid"><article class="card span8"><div class="cardhead"><h3>Topluluk özeti</h3><span class="sub">Genel bakış</span></div><div class="stats"><div class="stat"><b>—</b><span>Lig maçları</span></div><div class="stat"><b>—</b><span>Aktif üyeler</span></div><div class="stat"><b>—</b><span>Etkinlikler</span></div></div><div style="margin-top:18px" class="sub">Veriler bağlantı aşamasında burada otomatik güncellenecek.</div></article><article class="card span4"><div class="cardhead"><h3>Duyurular</h3><span class="sub">Topluluk</span></div><div id="homeAnnouncements" class="notice-list"><div class="empty">Duyurular yükleniyor…</div></div></article><article class="card span6"><div class="cardhead"><h3>Yaklaşan etkinlikler</h3><span class="sub">Takvim</span></div><div class="empty">Planlanan etkinlikler burada görünecek.</div></article><article class="card span6"><div class="cardhead"><h3>Son gazete haberleri</h3><span class="sub">FMTR Gazetesi</span></div><div class="empty">Henüz haber yayımlanmadı.</div></article><article class="card span8"><div class="cardhead"><h3>Topluluk hareketleri</h3><span class="sub">Son aktiviteler</span></div><div class="empty">Aktiviteler bağlandığında burada listelenecek.</div></article><article class="card span4"><div class="cardhead"><h3>Çevrimiçi üyeler</h3><span class="sub">Şu an</span></div><div class="empty">Durum sistemi henüz bağlı değil.</div></article><article class="card span12"><div class="cardhead"><h3>Hızlı erişim</h3><span class="sub">FMTR</span></div><div class="quick" id="quick"></div></article></div></section><section id="announcementsPage" class="sectionpage"><div class="section-toolbar"><div><h1>Duyurular</h1><p class="intro">FMTR yönetimi tarafından yayımlanan güncel duyurular.</p></div><button class="btn" onclick="loadAnnouncements()">↻ Yenile</button></div><div id="allAnnouncements" class="notice-list"><div class="empty">Duyurular yükleniyor…</div></div></section><section id="other" class="sectionpage"><h1 id="otherTitle">Bölüm</h1><p class="intro" id="otherIntro">FMTR bölümü.</p><div class="card"><div class="cardhead"><h3 id="otherCardTitle">Bu alanın başlangıç arayüzü</h3><span class="sub">Prototip</span></div><p id="otherText" class="sub">Bu bölümün işlevleri sonraki geliştirme aşamalarında bağlanacak.</p><div class="quick" id="sectionActions"></div></div></section></div></main></div><div class="mobile-nav"><button onclick="show('home')"><span class="ico">⌂</span>Home</button><button onclick="show('chat')"><span class="ico">▤</span>Sohbet</button><button onclick="toggleMenu()"><span class="ico">☰</span>Menü</button><button onclick="show('profile')"><span class="ico">◉</span>Profil</button></div><div class="toast" id="toast"></div>
+<div class="app"><aside class="sidebar" id="sidebar"><div class="brand"><img src="logo.png" alt="FMTR logosu"><div><strong>FMTR</strong><small>Özel topluluk • 2024</small></div></div><nav class="nav" id="nav"></nav></aside><main class="main"><header class="topbar"><div class="topleft"><button class="btn hamb" onclick="toggleMenu()">☰</button><span class="crumb">FMTR / <span id="crumb">Ana Sayfa</span></span></div><div class="topactions"><button class="btn" onclick="toast('Bildirimler sonraki aşamada bağlanacak.')" aria-label="Bildirimler">♧ <span class="sub">0</span></button><button class="btn" id="accountButton" onclick="logoutFMTR()">Çıkış yap</button></div></header><div class="content"><section id="home" class="sectionpage show"><div class="welcome"><div><div class="eyebrow">FMTR TOPLULUĞU</div><h1>Hoş geldin, üye.</h1><p>Topluluğun nabzı burada.</p></div><button class="btn" onclick="toast('Kişiselleştirme sonraki aşamada.')">⌁ Özelleştir</button></div><div class="grid"><article class="card span8"><div class="cardhead"><h3>Topluluk özeti</h3><span class="sub">Genel bakış</span></div><div class="stats"><div class="stat"><b>—</b><span>Lig maçları</span></div><div class="stat"><b>—</b><span>Aktif üyeler</span></div><div class="stat"><b>—</b><span>Etkinlikler</span></div></div><div style="margin-top:18px" class="sub">Veriler bağlantı aşamasında burada otomatik güncellenecek.</div></article><article class="card span4"><div class="cardhead"><h3>Duyurular</h3><span class="sub">Topluluk</span></div><div id="homeAnnouncements" class="notice-list"><div class="empty">Duyurular yükleniyor…</div></div></article><article class="card span6"><div class="cardhead"><h3>Yaklaşan etkinlikler</h3><span class="sub">Takvim</span></div><div class="empty">Planlanan etkinlikler burada görünecek.</div></article><article class="card span6"><div class="cardhead"><h3>Son gazete haberleri</h3><span class="sub">FMTR Gazetesi</span></div><div class="empty">Henüz haber yayımlanmadı.</div></article><article class="card span8"><div class="cardhead"><h3>Topluluk hareketleri</h3><span class="sub">Son aktiviteler</span></div><div class="empty">Aktiviteler bağlandığında burada listelenecek.</div></article><article class="card span4"><div class="cardhead"><h3>Çevrimiçi üyeler</h3><span class="sub">Şu an</span></div><div class="empty">Durum sistemi henüz bağlı değil.</div></article><article class="card span12"><div class="cardhead"><h3>Hızlı erişim</h3><span class="sub">FMTR</span></div><div class="quick" id="quick"></div></article></div></section><section id="announcementsPage" class="sectionpage"><div class="section-toolbar"><div><h1>Duyurular</h1><p class="intro">FMTR yönetimi tarafından yayımlanan güncel duyurular.</p></div><button class="btn" onclick="loadAnnouncements()">↻ Yenile</button></div><div id="allAnnouncements" class="notice-list"><div class="empty">Duyurular yükleniyor…</div></div></section><section id="profilePage" class="sectionpage"><h1>Profilim</h1><p class="intro">Profil bilgilerini düzenle.</p><div class="card"><div id="profileMount"></div></div></section><section id="other" class="sectionpage"><h1 id="otherTitle">Bölüm</h1><p class="intro" id="otherIntro">FMTR bölümü.</p><div class="card"><div class="cardhead"><h3 id="otherCardTitle">Bölüm</h3><span class="sub" id="moduleStatus">Canlı içerik</span></div><div id="moduleMount"></div></div></section></div></main></div><div class="mobile-nav"><button onclick="show('home')"><span class="ico">⌂</span>Ana Sayfa</button><button onclick="show('chat')"><span class="ico">▤</span>Sohbet</button><button onclick="toggleMenu()"><span class="ico">☰</span>Menü</button><button onclick="show('profile')"><span class="ico">◉</span>Profil</button></div><div class="toast" id="toast"></div>
 <script src="https://cdn.jsdelivr.net/npm/appwrite@29.0.0"></script>
 <script>
 const APPWRITE_ENDPOINT='https://fra.cloud.appwrite.io/v1';
@@ -138,6 +140,7 @@ function showFMTRApp(user){
   const accountButton=document.getElementById('accountButton');
   if(accountButton) accountButton.textContent=displayName+' · Çıkış';
   loadAnnouncements();
+  ensureMemberProfile(user).catch(err=>console.error('FMTR profile:',err));
 }
 async function logoutFMTR(){
   try{await awAccount.deleteSession({sessionId:'current'});}catch(e){}
@@ -180,18 +183,81 @@ const sections=[['home','Ana Sayfa','⌂','GENEL'],['announcements','Duyurular',
 const descriptions={'announcements':'Topluluğun sabit ve güncel duyuruları.','members':'Üyeler, roller ve davet yönetimi.','events':'Etkinlik planları, katılım ve oylamalar.','fm':'Ligler, transferler, haberler ve basın toplantıları.','minecraft':'Minecraft sohbeti ve paylaşımlar.','best':'Yıllık FMTR ödülleri ve kazananlar.','wheel':'İsimleri ekleyip şans çarkını kullan.','museum':'Topluluk görselleri ve ödül arşivi.','quotes':'Topluluğun unutulmaz sözleri.','paper':'FMTR haber arşivi.','history':'Yönetim işlemlerinin kayıtları.','profile':'Profil bilgilerin.','arcade':'Arkadaşlarla mini oyunlar.','tools':'Günlük araçlar.','season':'Sezonlar ve şampiyonluk arşivi.','settings':'Hesap, görünüm ve gizlilik tercihleri.','chat':'Topluluğun genel sohbet alanı.'};
 const nav=document.getElementById('nav');let group='';sections.forEach(([id,name,ico,g])=>{if(g!==group){group=g;nav.insertAdjacentHTML('beforeend',`<div class="navlabel">${g}</div>`)}nav.insertAdjacentHTML('beforeend',`<button data-id="${id}" onclick="show('${id}')"><span class="ico">${ico}</span>${name}</button>`)});
 const quickIds=['fm','chat','events','paper','museum','arcade'];quickIds.forEach(id=>{let s=sections.find(x=>x[0]===id);document.getElementById('quick').insertAdjacentHTML('beforeend',`<button onclick="show('${id}')"><span class="ico">${s[2]}</span><b>${s[1]}</b><span>${descriptions[id]}</span></button>`)});
-function show(id){
-  const homePage=document.getElementById('home');
-  const otherPage=document.getElementById('other');
-  const announcementsPage=document.getElementById('announcementsPage');
-  homePage.classList.remove('show'); otherPage.classList.remove('show'); announcementsPage.classList.remove('show');
-  if(id==='home'){
-    homePage.classList.add('show');
-    document.getElementById('crumb').textContent='Ana Sayfa';
-  }else if(id==='announcements'){
-    announcementsPage.classList.add('show');
-    document.getElementById('crumb').textContent='Duyurular';
-    loadAnnouncements();
-  }else{document.getElementById('home').classList.remove('show');document.getElementById('other').classList.add('show');let s=sections.find(x=>x[0]===id);document.getElementById('otherTitle').textContent=s?s[1]:id;document.getElementById('crumb').textContent=s?s[1]:id;document.getElementById('otherIntro').textContent=descriptions[id]||'FMTR bölümü';document.getElementById('otherCardTitle').textContent=s?s[1]+' • Başlangıç':'Bölüm';document.getElementById('otherText').textContent='Bu bölümün tasarımı hazır. Gerçek veri ve özellik bağlantıları sonraki aşamalarda yapılacak; şu an hiçbir işlem sahte biçimde kaydedilmiyor.';let actions=document.getElementById('sectionActions');actions.innerHTML='';['İçerik alanı','Arşiv','İşlemler'].forEach((x,i)=>actions.insertAdjacentHTML('beforeend',`<button onclick="toast('Bu özellik sonraki aşamada bağlanacak.')"><b>${x}</b><span>Henüz aktif değil</span></button>`))}document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.id===id));document.getElementById('sidebar').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'})}
+async function show(id){
+  const pages=['home','announcementsPage','profilePage','other'];
+  pages.forEach(pid=>document.getElementById(pid).classList.remove('show'));
+  const names={home:'Ana Sayfa',announcements:'Duyurular',members:'Üye Yönetimi',events:'Etkinlikler ve Oylamalar',fm:'Football Manager',minecraft:'Minecraft',best:'FMTR The Best',wheel:'Çark',museum:'FMTR Müze',quotes:'Efsane Sözler',paper:'FMTR Gazetesi',history:'İşlem Geçmişi',profile:'Profilim',arcade:'FMTR Arcade',tools:'FMTR Tools',season:'Sezon Merkezi',settings:'Ayarlar',chat:'Genel Sohbet'};
+  document.getElementById('crumb').textContent=names[id]||id;
+  if(id==='home') document.getElementById('home').classList.add('show');
+  else if(id==='announcements'){document.getElementById('announcementsPage').classList.add('show');loadAnnouncements();}
+  else if(id==='profile'){document.getElementById('profilePage').classList.add('show');renderProfile();}
+  else {document.getElementById('other').classList.add('show');document.getElementById('otherTitle').textContent=names[id]||id;document.getElementById('otherCardTitle').textContent=names[id]||id;await renderModule(id);}
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.id===id));
+  document.getElementById('sidebar').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const FMTR_TABLES={users:'users',events:'events',votes:'votes',chats:'chats',quotes:'quotes',awards:'awards',activities:'activities',announcements:'announcements'};
+const moduleMount=()=>document.getElementById('moduleMount');
+function currentName(){return (currentFMTRUser?.name||currentFMTRUser?.email?.split('@')[0]||'Üye').slice(0,100)}
+function moduleError(err){console.error(err);return `<div class="empty notice-error">İşlem yapılamadı: ${escapeHTML(err?.message||'Bilinmeyen hata')}. Appwrite tablo izinlerini kontrol et.</div>`}
+async function getRows(table,limit=50){const r=await awTables.listRows({databaseId:FMTR_DATABASE_ID,tableId:table,queries:[Appwrite.Query.orderDesc('$createdAt'),Appwrite.Query.limit(limit)]});return r.rows||[]}
+async function addRow(table,data){
+  const uid=currentFMTRUser?.$id;
+  if(!uid) throw new Error('Bu işlem için giriş yapmalısın.');
+  // RLS açıkken her satırın erişimi ayrıca tanımlanır:
+  // Tüm giriş yapmış üyeler okuyabilir; yalnızca oluşturan üye güncelleyip silebilir.
+  const permissions=[
+    Appwrite.Permission.read(Appwrite.Role.users()),
+    Appwrite.Permission.update(Appwrite.Role.user(uid)),
+    Appwrite.Permission.delete(Appwrite.Role.user(uid))
+  ];
+  return awTables.createRow({
+    databaseId:FMTR_DATABASE_ID,
+    tableId:table,
+    rowId:Appwrite.ID.unique(),
+    data,
+    permissions
+  });
+}
+function cardRow(title,body,meta=''){return `<article class="data-row"><h3>${escapeHTML(title||'')}</h3><p>${escapeHTML(body||'')}</p>${meta?`<small>${escapeHTML(meta)}</small>`:''}</article>`}
+async function ensureMemberProfile(user){
+  if(!user?.$id)return;
+  const found=await awTables.listRows({databaseId:FMTR_DATABASE_ID,tableId:'users',queries:[Appwrite.Query.equal('userId',user.$id),Appwrite.Query.limit(1)]});
+  if(!found.rows?.length){await addRow('users',{userId:user.$id,username:(user.name||user.email.split('@')[0]).slice(0,30),bio:'',avatarUrl:'',role:'member'});}
+}
+async function renderProfile(){
+  const box=document.getElementById('profileMount');
+  if(!currentFMTRUser){box.innerHTML='<div class="empty">Oturum bulunamadı.</div>';return;}
+  try{
+    const r=await awTables.listRows({databaseId:FMTR_DATABASE_ID,tableId:'users',queries:[Appwrite.Query.equal('userId',currentFMTRUser.$id),Appwrite.Query.limit(1)]});
+    const row=r.rows?.[0];
+    box.innerHTML=`<form class="module-form" onsubmit="saveProfile(event,'${row?.$id||''}')"><label class="field-label">Kullanıcı adı<input id="profileUsername" maxlength="30" required value="${escapeHTML(row?.username||currentName().slice(0,30))}"></label><label class="field-label">Hakkımda<textarea id="profileBio" maxlength="1000">${escapeHTML(row?.bio||'')}</textarea></label><button>Profili kaydet</button><div id="profileMessage" class="notice-status"></div></form><div class="sub">E-posta: ${escapeHTML(currentFMTRUser.email||'')}</div><div class="sub">Rol: ${escapeHTML(row?.role||'member')}</div>`;
+  }catch(e){box.innerHTML=moduleError(e)}
+}
+async function saveProfile(ev,rowId){ev.preventDefault();const msg=document.getElementById('profileMessage');try{const data={username:document.getElementById('profileUsername').value.trim(),bio:document.getElementById('profileBio').value.trim()};if(rowId)await awTables.updateRow({databaseId:FMTR_DATABASE_ID,tableId:'users',rowId,data});else await addRow('users',{userId:currentFMTRUser.$id,...data,avatarUrl:'',role:'member'});msg.textContent='Profil kaydedildi.';}catch(e){msg.textContent=e.message||'Kaydedilemedi.'}}
+const MODULES={
+ members:{table:'users',title:'Üyeler',form:false,render:r=>cardRow(r.username||'Üye',r.bio||'Henüz biyografi eklenmemiş.',`Rol: ${r.role||'member'}`)},
+ events:{table:'events',title:'Etkinlikler',form:true,fields:[['title','Etkinlik başlığı','text'],['content','Açıklama','textarea'],['eventDate','Tarih ve saat','datetime-local']],make:v=>({title:v.title,content:v.content,eventDate:new Date(v.eventDate).toISOString(),author:currentName(),status:'planned'}),render:r=>cardRow(r.title,r.content,`${r.eventDate?new Date(r.eventDate).toLocaleString('tr-TR'):'Tarih yok'} · ${r.author||''}`)},
+ chats:{table:'chats',title:'Genel Sohbet',form:true,fields:[['message','Mesajını yaz','textarea']],make:v=>({userId:currentFMTRUser.$id,author:currentName(),message:v.message}),render:r=>cardRow(r.author,r.message,new Date(r.$createdAt).toLocaleString('tr-TR'))},
+ quotes:{table:'quotes',title:'Efsane Sözler',form:true,fields:[['content','Sözü yaz','textarea'],['author','Sözü söyleyen','text']],make:v=>({content:v.content,author:v.author||currentName()}),render:r=>cardRow(r.content,'',r.author||'Bilinmiyor')},
+ awards:{table:'awards',title:'FMTR The Best',form:true,fields:[['title','Ödül adı','text'],['winner','Kazanan','text'],['year','Yıl','number']],make:v=>({title:v.title,winner:v.winner,year:Number(v.year)}),render:r=>cardRow(r.title,r.winner,String(r.year||''))},
+ history:{table:'activities',title:'İşlem Geçmişi',form:false,render:r=>cardRow(r.action,r.author,new Date(r.$createdAt).toLocaleString('tr-TR'))},
+ votes:{table:'votes',title:'Oylamalar',form:true,fields:[['eventId','Etkinlik ID','text'],['option','Tercihin','text']],make:v=>({eventId:v.eventId,userId:currentFMTRUser.$id,option:v.option}),render:r=>cardRow(r.option,`Etkinlik: ${r.eventId}`,`Üye: ${r.userId}`)}
+};
+async function submitModuleForm(ev,id){ev.preventDefault();const cfg=MODULES[id];const form=ev.target;const vals={};cfg.fields.forEach(([key])=>vals[key]=form.elements[key].value.trim());const status=form.querySelector('.notice-status');try{await addRow(cfg.table,cfg.make(vals));status.textContent='Kaydedildi.';await renderModule(id);}catch(e){status.textContent=e.message||'Kaydedilemedi.'}}
+async function renderModule(id){
+  const box=moduleMount();const cfg=MODULES[id];
+  if(cfg){let form='';if(cfg.form){form=`<form class="module-form" onsubmit="submitModuleForm(event,'${id}')">${cfg.fields.map(([key,label,type])=>`<label class="field-label">${escapeHTML(label)}${type==='textarea'?`<textarea name="${key}" required></textarea>`:`<input name="${key}" type="${type}" ${type==='number'?'min="2000" max="2100"':''} required>`}</label>`).join('')}<button>Paylaş / Kaydet</button><div class="notice-status"></div></form>`;}
+    box.innerHTML=form+'<div class="data-list" id="moduleRows"><div class="empty">Yükleniyor…</div></div>';
+    try{const rows=await getRows(cfg.table);document.getElementById('moduleRows').innerHTML=rows.length?rows.map(cfg.render).join(''):'<div class="empty">Henüz içerik yok.</div>';}catch(e){document.getElementById('moduleRows').innerHTML=moduleError(e)}return;
+  }
+  if(id==='wheel'){box.innerHTML=`<p class="sub">Her satıra bir isim yaz. Çark rastgele bir isim seçecek.</p><textarea id="wheelNames" class="module-form" style="width:100%;min-height:130px;background:#0e0e13;color:white;border:1px solid #34303d;border-radius:8px;padding:12px" placeholder="Zahir
+Ali
+Mehmet"></textarea><button class="action-btn" onclick="spinWheel()">İsim seç</button><h2 id="wheelResult"></h2>`;return;}
+  const info={fm:'Football Manager içerikleri için lig, transfer ve sezon kayıt alanları hazırlanacak.',minecraft:'Minecraft paylaşımları ve sunucu bilgileri için içerik alanı hazırlanacak.',best:'Ödül kayıtlarını yukarıdaki FMTR The Best bölümünden ekleyebilirsin.',museum:'Görsel arşivi için FMTR Uploads depolama alanı bağlantısı sonraki entegrasyonda yapılacak.',paper:'Gazete haberleri için ayrı haber tablosu henüz bulunmuyor.',arcade:'Mini oyunlar ayrı modüller hâlinde eklenecek.',tools:'Araçlar bölümü için hesaplama ve yardımcı araçlar eklenecek.',season:'Sezon kayıtları için ayrı tablo henüz bulunmuyor.',settings:'Hesap güvenliği ve görünüm ayarları burada toplanacak.'};
+  box.innerHTML=`<div class="data-row"><h3>${escapeHTML((sections.find(x=>x[0]===id)||[])[1]||id)}</h3><p>${escapeHTML(info[id]||'Bu bölüm için gerekli veri yapısı henüz oluşturulmadı.')}</p></div>`;
+}
+function spinWheel(){const names=document.getElementById('wheelNames').value.split(/\n/).map(x=>x.trim()).filter(Boolean);document.getElementById('wheelResult').textContent=names.length?('Seçilen: '+names[Math.floor(Math.random()*names.length)]):'Önce isim ekle.'}
+
 function toggleMenu(){document.getElementById('sidebar').classList.toggle('open')}function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
 </script></body></html>
