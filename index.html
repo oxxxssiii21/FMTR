@@ -140,7 +140,23 @@ function showFMTRApp(user){
   const accountButton=document.getElementById('accountButton');
   if(accountButton) accountButton.textContent=displayName+' · Çıkış';
   loadAnnouncements();
-  ensureMemberProfile(user).catch(err=>console.error('FMTR profile:',err));
+  ensureMemberProfile(user).then(()=>{
+    console.info('FMTR profile: hazır');
+  }).catch(err=>{
+    console.error('FMTR profile:',err);
+    showProfileSetupError(err);
+  });
+}
+function showProfileSetupError(err){
+  const message=err?.message||'Bilinmeyen Appwrite hatası';
+  let box=document.getElementById('fmtrSetupError');
+  if(!box){
+    box=document.createElement('div');
+    box.id='fmtrSetupError';
+    box.style.cssText='position:fixed;left:16px;right:16px;bottom:82px;z-index:20;background:#351d25;border:1px solid #a34a5a;color:#ffe5e8;padding:14px;border-radius:10px;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere';
+    document.body.appendChild(box);
+  }
+  box.textContent='FMTR profil kaydı oluşturulamadı: '+message+' (Bu hata artık gizlenmiyor.)';
 }
 async function logoutFMTR(){
   try{await awAccount.deleteSession({sessionId:'current'});}catch(e){}
@@ -221,9 +237,19 @@ async function addRow(table,data){
 }
 function cardRow(title,body,meta=''){return `<article class="data-row"><h3>${escapeHTML(title||'')}</h3><p>${escapeHTML(body||'')}</p>${meta?`<small>${escapeHTML(meta)}</small>`:''}</article>`}
 async function ensureMemberProfile(user){
-  if(!user?.$id)return;
-  const found=await awTables.listRows({databaseId:FMTR_DATABASE_ID,tableId:'users',queries:[Appwrite.Query.equal('userId',user.$id),Appwrite.Query.limit(1)]});
-  if(!found.rows?.length){await addRow('users',{userId:user.$id,username:(user.name||user.email.split('@')[0]).slice(0,30),bio:'',avatarUrl:'',role:'member'});}
+  if(!user?.$id) throw new Error('Appwrite kullanıcı kimliği alınamadı.');
+  let found;
+  try{
+    found=await awTables.listRows({databaseId:FMTR_DATABASE_ID,tableId:'users',queries:[Appwrite.Query.equal('userId',user.$id),Appwrite.Query.limit(1)]});
+  }catch(error){
+    throw new Error('users tablosu okunamadı. Tablo ID, READ izni ve RLS ayarını kontrol et. Appwrite: '+(error?.message||error));
+  }
+  if(found.rows?.length) return found.rows[0];
+  try{
+    return await addRow('users',{userId:user.$id,username:(user.name||user.email?.split('@')[0]||'Üye').slice(0,30),bio:'',avatarUrl:'',role:'member'});
+  }catch(error){
+    throw new Error('users tablosuna profil yazılamadı. users tablosunda CREATE izni açık olmalı; RLS açık olmalı ve satır izinleri kabul edilmeli. Appwrite: '+(error?.message||error));
+  }
 }
 async function renderProfile(){
   const box=document.getElementById('profileMount');
@@ -249,7 +275,15 @@ async function renderModule(id){
   const box=moduleMount();const cfg=MODULES[id];
   if(cfg){let form='';if(cfg.form){form=`<form class="module-form" onsubmit="submitModuleForm(event,'${id}')">${cfg.fields.map(([key,label,type])=>`<label class="field-label">${escapeHTML(label)}${type==='textarea'?`<textarea name="${key}" required></textarea>`:`<input name="${key}" type="${type}" ${type==='number'?'min="2000" max="2100"':''} required>`}</label>`).join('')}<button>Paylaş / Kaydet</button><div class="notice-status"></div></form>`;}
     box.innerHTML=form+'<div class="data-list" id="moduleRows"><div class="empty">Yükleniyor…</div></div>';
-    try{const rows=await getRows(cfg.table);document.getElementById('moduleRows').innerHTML=rows.length?rows.map(cfg.render).join(''):'<div class="empty">Henüz içerik yok.</div>';}catch(e){document.getElementById('moduleRows').innerHTML=moduleError(e)}return;
+    try{
+      const rows=await getRows(cfg.table);
+      const target=document.getElementById('moduleRows');
+      if(!target) return;
+      target.innerHTML=rows.length?rows.map(cfg.render).join(''):'<div class="empty">Henüz kayıt yok. İlk kayıt profil oluşturma sırasında eklenir.</div>';
+    }catch(e){
+      const target=document.getElementById('moduleRows');
+      if(target) target.innerHTML=moduleError(e);
+    }return;
   }
   if(id==='wheel'){box.innerHTML=`<p class="sub">Her satıra bir isim yaz. Çark rastgele bir isim seçecek.</p><textarea id="wheelNames" class="module-form" style="width:100%;min-height:130px;background:#0e0e13;color:white;border:1px solid #34303d;border-radius:8px;padding:12px" placeholder="Zahir
 Ali
