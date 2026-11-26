@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101014"><title>FMTR • Topluluk</title>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101014"><title>FMTR • Topluluk</title><meta name="fmtr-build" content="2026-11-26-profile-rowid-fix">
 <style>
 :root{--bg:#0c0c10;--panel:#15151b;--panel2:#1b1b23;--line:#292832;--text:#eeeef3;--muted:#92919e;--purple:#8b48d9;--p2:#b38aff}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button{font:inherit;color:inherit;cursor:pointer}a{color:inherit;text-decoration:none}.app{min-height:100vh;display:flex}.sidebar{width:248px;background:#111116;border-right:1px solid var(--line);padding:18px 14px;position:fixed;inset:0 auto 0 0;overflow:auto;z-index:5}.brand{display:flex;align-items:center;gap:12px;padding:5px 8px 18px;border-bottom:1px solid var(--line);margin-bottom:15px}.brand img{width:58px;height:58px;object-fit:contain;border-radius:12px}.brand strong{font-size:18px;letter-spacing:1px}.brand small{display:block;color:var(--muted);font-size:11px}.navlabel{font-size:10px;color:#797784;font-weight:800;letter-spacing:1.4px;padding:13px 9px 6px}.nav button{width:100%;border:0;background:none;display:flex;align-items:center;gap:12px;text-align:left;padding:10px 11px;border-radius:8px;color:#c3c2cd;font-size:13px;margin:2px 0}.nav button:hover{background:#202027}.nav button.active{background:#282032;color:#e6d3ff;box-shadow:inset 2px 0 var(--purple)}.ico{width:19px;text-align:center;color:#a6a4b1;font-size:15px}.main{margin-left:248px;min-width:0;flex:1}.topbar{height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-bottom:1px solid var(--line);background:#101014;position:sticky;top:0;z-index:3}.topleft{display:flex;align-items:center;gap:12px}.crumb{color:var(--muted);font-size:13px}.topactions{display:flex;gap:10px;align-items:center}.btn{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:9px 12px}.btn:hover{border-color:#51445e}.hamb{display:none}.content{padding:28px;max-width:1500px;margin:auto}.welcome{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:24px}.welcome h1{font-size:26px;letter-spacing:-.5px;margin:0 0 5px}.welcome p{color:var(--muted);margin:0}.eyebrow{color:var(--p2);font-size:11px;font-weight:800;letter-spacing:1.5px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0}.span8{grid-column:span 8}.span4{grid-column:span 4}.span6{grid-column:span 6}.span12{grid-column:span 12}.cardhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.cardhead h3{margin:0;font-size:15px}.sub{color:var(--muted);font-size:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{padding:15px;background:#1b1a22;border-radius:9px}.stat b{font-size:24px;display:block}.stat span{color:var(--muted);font-size:12px}.feed{display:flex;gap:12px;padding:12px 0;border-top:1px solid #24232b}.feed:first-child{border:0}.avatar{width:34px;height:34px;border-radius:10px;background:#322342;display:grid;place-items:center;color:#d7b5ff;font-weight:700;flex-shrink:0}.feed p{margin:0;font-size:13px}.feed small{color:var(--muted)}.event{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #24232b}.event:last-child{border:0}.datebox{background:#25202e;border:1px solid #392c49;border-radius:8px;padding:8px;text-align:center;min-width:45px;color:#d7b5ff}.datebox b{display:block;font-size:17px}.datebox small{font-size:10px}.empty{padding:25px;text-align:center;color:var(--muted)}.sectionpage{display:none}.sectionpage.show{display:block}.sectionpage h1{font-size:25px;margin:0 0 8px}.sectionpage .intro{color:var(--muted);margin-bottom:20px}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.quick button{background:#1a1921;border:1px solid var(--line);border-radius:10px;padding:16px;text-align:left}.quick button:hover{border-color:#71528e}.quick b{display:block;margin:7px 0}.quick span{font-size:12px;color:var(--muted)}.mobile-nav{display:none}.toast{position:fixed;bottom:20px;right:20px;background:#292232;border:1px solid #59416f;padding:12px 16px;border-radius:10px;display:none;z-index:10}.toast.show{display:block}
 @media(max-width:950px){.sidebar{width:220px}.main{margin-left:220px}.span8,.span4{grid-column:span 12}.content{padding:22px}}
@@ -236,6 +236,8 @@ async function addRow(table,data,rowId=Appwrite.ID.unique()){
   });
 }
 function cardRow(title,body,meta=''){return `<article class="data-row"><h3>${escapeHTML(title||'')}</h3><p>${escapeHTML(body||'')}</p>${meta?`<small>${escapeHTML(meta)}</small>`:''}</article>`}
+// Profil satırı Appwrite kullanıcı ID'siyle aynı rowId'ye sahip olur.
+// users tablosunda userId adlı bir sütun gerekmez ve bu sütunla sorgu yapılmaz.
 async function getOwnProfile(user){
   try{
     return await awTables.getRow({databaseId:FMTR_DATABASE_ID,tableId:'users',rowId:user.$id});
@@ -246,16 +248,10 @@ async function getOwnProfile(user){
 }
 async function ensureMemberProfile(user){
   if(!user?.$id) throw new Error('Appwrite kullanıcı kimliği alınamadı.');
-  let row;
-  try{ row=await getOwnProfile(user); }
-  catch(error){ throw new Error('Kendi profil kaydın okunamadı. Appwrite: '+(error?.message||error)); }
+  const row=await getOwnProfile(user);
   if(row) return row;
-  try{
-    // Profil satırının ID'si doğrudan Appwrite kullanıcı ID'si. Böylece userId sütununa ihtiyaç kalmaz.
-    return await addRow('users',{username:(user.name||user.email?.split('@')[0]||'Üye').slice(0,30),bio:'',avatarUrl:'',role:'member'},user.$id);
-  }catch(error){
-    throw new Error('Profil kaydı oluşturulamadı. users tablosunda CREATE izni ve zorunlu sütunları kontrol edilmeli. Appwrite: '+(error?.message||error));
-  }
+  const username=(user.name||user.email?.split('@')[0]||'Üye').slice(0,30);
+  return await addRow('users',{username,bio:'',avatarUrl:'',role:'member'},user.$id);
 }
 async function renderProfile(){
   const box=document.getElementById('profileMount');
